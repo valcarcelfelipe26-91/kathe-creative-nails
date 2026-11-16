@@ -426,7 +426,11 @@ if (resultado && resultado.user) {
             return;
         }
 
-        const correo = (usuario.email || "").toLowerCase();
+        const correo = (
+    usuario.email ||
+    usuario.providerData.find(p => p.providerId === "google.com")?.email ||
+    ""
+).toLowerCase();
         console.log("Correo detectado:", usuario.email);
 console.log("Correo verificado:", usuario.emailVerified);
 console.log("Correo autorizado:", CORREOS_PERMITIDOS.includes(correo));
