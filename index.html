@@ -550,13 +550,10 @@
     await addDoc(collection(db, "citas"), nueva);
     document.getElementById("cliente").value = "";
 
-} catch (error) {
-    console.error(error);
-    alert("No se pudo guardar la cita: " + error.message);
-}
-            console.error(error);
-            alert("No se pudo guardar la cita: " + error.message);
-        }
+    } catch (error) {
+        console.error(error);
+        alert("No se pudo guardar la cita: " + error.message);
+    }
     }
 
     async function cambiarServicio(id, nuevoServ) {
