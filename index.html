@@ -413,12 +413,18 @@
         }
 
         const correo = (usuario.email || "").toLowerCase();
-        if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
-            await signOut(auth);
-            mostrarEstado("Acceso no autorizado. Usa uno de los dos Gmail habilitados.");
-            return;
-        }
+        console.log("Correo detectado:", usuario.email);
+console.log("Correo verificado:", usuario.emailVerified);
+console.log("Correo autorizado:", CORREOS_PERMITIDOS.includes(correo));
 
+if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
+    mostrarEstado(
+        "Acceso rechazado: " + correo +
+        " | Verificado: " + usuario.emailVerified +
+        " | Autorizado: " + CORREOS_PERMITIDOS.includes(correo)
+    );
+    return;
+}
         usuarioActual = usuario;
         btnGoogle.style.display = "none";
         btnSalir.style.display = "inline-block";
