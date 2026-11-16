@@ -379,9 +379,13 @@
         try {
             mostrarEstado("Abriendo Google...");
             const resultado = await signInWithPopup(auth, proveedorGoogle);
-            if (resultado && resultado.user) {
-                mostrarEstado("Google autorizó la cuenta. Conectando agenda...");
-            }
+
+console.log("USUARIO GOOGLE:", resultado.user.email);
+console.log("UID FIREBASE:", resultado.user.uid);
+
+if (resultado && resultado.user) {
+    mostrarEstado("Google autorizó: " + resultado.user.email);
+}
         } catch (error) {
             console.error(error);
             mostrarEstado("No se pudo iniciar sesión: " + error.message);
