@@ -418,11 +418,7 @@ console.log("Correo verificado:", usuario.emailVerified);
 console.log("Correo autorizado:", CORREOS_PERMITIDOS.includes(correo));
 
 if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
-    mostrarEstado(
-        "Acceso rechazado: " + correo +
-        " | Verificado: " + usuario.emailVerified +
-        " | Autorizado: " + CORREOS_PERMITIDOS.includes(correo)
-    );
+    mostrarEstado("Correo detectado por Firebase: [" + usuario.email + "]");
     return;
 }
         usuarioActual = usuario;
