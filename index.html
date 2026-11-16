@@ -388,11 +388,8 @@ console.log("PROVEEDOR:", resultado.user.providerData);
 console.log("UID FIREBASE:", resultado.user.uid);
 
 if (resultado && resultado.user) {
-    mostrarEstado(
-        "UID: " + resultado.user.uid +
-        " | Correo: " + JSON.stringify(resultado.user.email) +
-        " | Proveedor: " + JSON.stringify(resultado.user.providerData)
-    );
+    mostrarEstado("Google autorizó la cuenta. Conectando agenda...");
+}
 } else {
     mostrarEstado("Google no devolvió un usuario válido.");
 }
