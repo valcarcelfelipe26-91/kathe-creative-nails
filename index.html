@@ -377,28 +377,31 @@ proveedorGoogle.addScope("profile");
         estadoSesion.style.color = conectado ? "#237a45" : "#5b3a7d";
     }
 
-    btnGoogle.addEventListener("click", async () => {
-        try {
-            mostrarEstado("Abriendo Google...");
-            const resultado = await signInWithPopup(auth, proveedorGoogle);
+btnGoogle.addEventListener("click", async () => {
+    try {
+        btnGoogle.disabled = true;
+        mostrarEstado("Abriendo Google...");
 
-console.log("USUARIO GOOGLE:", resultado.user.email);
+        const resultado = await signInWithPopup(auth, proveedorGoogle);
+
+        if (resultado && resultado.user) {
+            console.log("USUARIO GOOGLE:", resultado.user.email);
             console.log("DATOS COMPLETOS:", resultado.user);
-console.log("PROVEEDOR:", resultado.user.providerData);
-console.log("UID FIREBASE:", resultado.user.uid);
+            console.log("PROVEEDOR:", resultado.user.providerData);
+            console.log("UID FIREBASE:", resultado.user.uid);
 
-if (resultado && resultado.user) {
-    mostrarEstado("Google autorizó la cuenta. Conectando agenda...");
-}
-} else {
-    mostrarEstado("Google no devolvió un usuario válido.");
-}
-        } catch (error) {
-            console.error(error);
-            mostrarEstado("No se pudo iniciar sesión: " + error.message);
+            mostrarEstado("Google autorizó la cuenta. Conectando agenda...");
+        } else {
+            mostrarEstado("Google no devolvió un usuario válido.");
         }
-    });
 
+    } catch (error) {
+        console.error(error);
+        mostrarEstado("No se pudo iniciar sesión: " + error.message);
+    } finally {
+        btnGoogle.disabled = false;
+    }
+});
     btnSalir.addEventListener("click", async () => {
         try { await signOut(auth); }
         catch (error) { mostrarEstado("Error al cerrar sesión: " + error.message); }
