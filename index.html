@@ -388,7 +388,13 @@ console.log("PROVEEDOR:", resultado.user.providerData);
 console.log("UID FIREBASE:", resultado.user.uid);
 
 if (resultado && resultado.user) {
-    mostrarEstado("Google autorizó: " + resultado.user.email);
+    mostrarEstado(
+        "UID: " + resultado.user.uid +
+        " | Correo: " + JSON.stringify(resultado.user.email) +
+        " | Proveedor: " + JSON.stringify(resultado.user.providerData)
+    );
+} else {
+    mostrarEstado("Google no devolvió un usuario válido.");
 }
         } catch (error) {
             console.error(error);
