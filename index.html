@@ -432,6 +432,7 @@ if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
             ordenarCitas();
             renderizar();
             mostrarEstado("Sincronizado en la nube · " + correo, true);
+            console.log("FIRESTORE CONECTADO CORRECTAMENTE");
 
             // Importa una sola vez las citas guardadas previamente en este dispositivo,
             // únicamente si la colección compartida está vacía.
