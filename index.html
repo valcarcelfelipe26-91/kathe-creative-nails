@@ -432,9 +432,8 @@ if (resultado && resultado.user) {
 console.log("Correo verificado:", usuario.emailVerified);
 console.log("Correo autorizado:", CORREOS_PERMITIDOS.includes(correo));
 
-if (!CORREOS_PERMITIDOS.includes(correo)) {
-    await signOut(auth);
-    mostrarEstado("Acceso no autorizado. Usa uno de los dos Gmail habilitados.");
+if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
+    mostrarEstado("Correo detectado por Firebase: [" + usuario.email + "]");
     return;
 }
         usuarioActual = usuario;
