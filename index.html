@@ -532,9 +532,27 @@
         };
 
         try {
-            await addDoc(collection(db, "citas"), nueva);
-            document.getElementById("cliente").value = "";
-        } catch (error) {
+    const citasActuales = await getDocs(collection(db, "citas"));
+
+    const espacioOcupado = citasActuales.docs.some((documento) => {
+        const citaExistente = documento.data();
+
+        return citaExistente.fecha === nueva.fecha &&
+               citaExistente.hora === nueva.hora;
+    });
+
+    if (espacioOcupado) {
+        alert("Ese horario ya está ocupado. Por favor, selecciona otra hora.");
+        return;
+    }
+
+    await addDoc(collection(db, "citas"), nueva);
+    document.getElementById("cliente").value = "";
+
+} catch (error) {
+    console.error(error);
+    alert("No se pudo guardar la cita: " + error.message);
+}
             console.error(error);
             alert("No se pudo guardar la cita: " + error.message);
         }
