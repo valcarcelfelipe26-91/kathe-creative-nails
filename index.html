@@ -381,6 +381,8 @@
             const resultado = await signInWithPopup(auth, proveedorGoogle);
 
 console.log("USUARIO GOOGLE:", resultado.user.email);
+            console.log("DATOS COMPLETOS:", resultado.user);
+console.log("PROVEEDOR:", resultado.user.providerData);
 console.log("UID FIREBASE:", resultado.user.uid);
 
 if (resultado && resultado.user) {
