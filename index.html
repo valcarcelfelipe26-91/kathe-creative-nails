@@ -479,7 +479,7 @@ if (!usuario.emailVerified || !CORREOS_PERMITIDOS.includes(correo)) {
             }
         }, (error) => {
             console.error(error);
-            mostrarEstado("Error de sincronización: " + error.message);
+            mostrarEstado("ERROR FIRESTORE: " + error.code + " | " + error.message);
         });
     });
 
